@@ -12,17 +12,17 @@ import {SidebarInset, SidebarTrigger} from "@/components/ui/sidebar";
 import {Separator} from "@/components/ui/separator";
 import {
     Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
+    BreadcrumbItem, BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {ScrollArea, ScrollBar} from "@/components/ui/scroll-area";
-import {Eye, PencilLine, Trash2} from "lucide-react";
+import {ChevronDown, Eye, PencilLine, Slash, Trash2} from "lucide-react";
 import Link from "next/link";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 
 const invoices = [
     {
@@ -77,16 +77,38 @@ export default function EmployeesTable() {
                 <div className="flex items-center gap-2 px-4">
                     <SidebarTrigger className="-ml-1"/>
                     <Separator orientation="vertical" className="mr-2 h-4"/>
+                    {/*todo: it should be dynamic*/}
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem className="hidden md:block">
-                                <BreadcrumbLink href="#">
-                                    Building Your Application
+                                <BreadcrumbLink asChild>
+                                    <Link href="/admin-dashboard">Dashboard</Link>
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
-                            <BreadcrumbSeparator className="hidden md:block"/>
+                            <BreadcrumbSeparator className="hidden md:block">
+                                <Slash className="h-4 w-4"/>
+                            </BreadcrumbSeparator>
+                            <BreadcrumbItem className="hidden md:block">
+                                <BreadcrumbLink>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger className="flex items-center gap-1">
+                                            Master Employee
+                                            <ChevronDown className="h-4 w-4"/>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="start">
+                                            {/*todo add link*/}
+                                            <DropdownMenuItem>All Employees</DropdownMenuItem>
+                                            <DropdownMenuItem>Inactive Employees</DropdownMenuItem>
+                                            <DropdownMenuItem>Active Employees</DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator className="hidden md:block">
+                                <Slash className="h-4 w-4"/>
+                            </BreadcrumbSeparator>
                             <BreadcrumbItem>
-                                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                                <BreadcrumbPage>All employees</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
@@ -99,7 +121,8 @@ export default function EmployeesTable() {
                         <CardDescription>List of all employees</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <ScrollArea className="w-72 sm:w-[680px] md:w-[700px] lg:w-[900px] xl:w-[1000px] 2xl:w-auto whitespace-nowrap rounded-md border">
+                        <ScrollArea
+                            className="w-72 sm:w-[680px] md:w-[700px] lg:w-[900px] xl:w-[1000px] 2xl:w-auto whitespace-nowrap rounded-md border">
                             <Table>
                                 <TableCaption>A list of your recent invoices.</TableCaption>
                                 <TableHeader>
