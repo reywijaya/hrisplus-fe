@@ -4,13 +4,14 @@ import * as React from "react"
 import {
     AudioWaveform,
     BookOpen,
+    CircleDollarSign,
     Command,
     Database,
     Frame,
     GalleryVerticalEnd,
     Map,
+    MessageSquareQuote,
     PieChart,
-    Settings2, CircleDollarSign, MessageSquareQuote,
 } from "lucide-react"
 
 import {NavMain} from "@/components/nav-main"
@@ -56,7 +57,7 @@ const data = {
             items: [
                 {
                     title: "All Employee",
-                    url: "#",
+                    url: "/admin-dashboard/employees",
                 },
                 {
                     title: "Active Employee",
@@ -153,6 +154,7 @@ const data = {
     ],
 }
 
+// Dashboard sidebar for Administrator
 export function AppSidebarAdmin({...props}: React.ComponentProps<typeof Sidebar>) {
     return (
         <Sidebar collapsible="icon" {...props}>
