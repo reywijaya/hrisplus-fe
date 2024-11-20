@@ -71,7 +71,7 @@ const data = {
         },
         {
             title: "Payroll Management",
-            url: "#",
+            url: "/admin-dashboard/payroll",
             icon: CircleDollarSign,
             items: [
                 {
