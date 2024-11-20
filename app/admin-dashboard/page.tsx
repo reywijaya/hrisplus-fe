@@ -4,6 +4,9 @@ import {Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage} from "@/comp
 import CardSection from "@/components/admin/card-section";
 import {columns, Payment} from "@/components/admin/data-table/columns-definition";
 import {DataTable} from "@/components/admin/data-table/data-table-section";
+import {ChartAreaComponent} from "@/components/admin/chart/chart-area";
+import {BarChartComponent} from "@/components/admin/chart/bar-chart";
+import {PieChartComponent} from "@/components/admin/chart/pie-chart";
 
 const dataCard = [
     {
@@ -208,6 +211,11 @@ export default async function AdminDashboardPage() {
                     <div className="rounded-xl">
                         <CardSection title={dataCard[2].title} content={dataCard[2].content}/>
                     </div>
+                </div>
+                <div className="grid gap-4 md:grid-cols-3">
+                    <ChartAreaComponent />
+                    <BarChartComponent />
+                    <PieChartComponent />
                 </div>
                 <div className="flex-1">
                     <DataTable columns={columns} data={data}/>
