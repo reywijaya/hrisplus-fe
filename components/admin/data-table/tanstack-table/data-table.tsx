@@ -25,24 +25,33 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-import { DataTablePagination } from "./data-table-pagination"
-import { DataTableToolbar } from "./data-table-toolbar"
+import {DataTablePagination} from "./data-table-pagination"
+import {DataTableToolbar} from "./data-table-toolbar"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
 }
 
-export function DataTable<TData, TValue>({
-                                             columns,
-                                             data,
-                                         }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
+
     const [rowSelection, setRowSelection] = React.useState({})
-    const [columnVisibility, setColumnVisibility] =
-        React.useState<VisibilityState>({})
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-        []
-    )
+    const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({
+        id: true,
+        firstName: true,
+        lastName: true,
+        phoneNumber: false,
+        role: true,
+        address: false,
+        emergencyNumber: false,
+        employmentContract: false,
+        cardNumber: false,
+        outletName: false,
+        loanStatus: false,
+        gender: false,
+        isActive: true
+    })
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
     const [sorting, setSorting] = React.useState<SortingState>([])
 
     const table = useReactTable({
@@ -69,7 +78,7 @@ export function DataTable<TData, TValue>({
 
     return (
         <div className="space-y-4">
-            <DataTableToolbar table={table} />
+            <DataTableToolbar table={table}/>
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
@@ -120,7 +129,7 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <DataTablePagination table={table} />
+            <DataTablePagination table={table}/>
         </div>
     )
 }

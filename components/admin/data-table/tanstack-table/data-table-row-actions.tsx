@@ -19,16 +19,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { labels } from "@/app/admin-dashboard/payroll/data/data"
-import { taskSchema } from "@/app/admin-dashboard/payroll/data/schema"
+import { employeeSchema } from "@/app/admin-dashboard/employees/data/schema"
 
 interface DataTableRowActionsProps<TData> {
     row: Row<TData>
 }
 
-export function DataTableRowActions<TData>({
-                                               row,
-                                           }: DataTableRowActionsProps<TData>) {
-    const task = taskSchema.parse(row.original)
+export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData>) {
+    const task = employeeSchema.parse(row.original)
 
     return (
         <DropdownMenu>

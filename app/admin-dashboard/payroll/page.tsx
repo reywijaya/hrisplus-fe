@@ -1,14 +1,11 @@
-import { promises as fs } from "fs"
+import {promises as fs} from "fs"
 import path from "path"
-import { Metadata } from "next"
-import Image from "next/image"
-import { z } from "zod"
+import {Metadata} from "next"
+import {z} from "zod"
 
-import { columns } from "@/components/admin/payroll/columns"
-import { DataTable } from "@/components/admin/payroll/data-table"
-import { UserNav } from "@/components/admin/payroll/user-nav"
-import { taskSchema } from "./data/schema"
-import BreadcrumbSection from "@/components/admin/breadcrumb-section";
+import {columns} from "@/components/admin/payroll/columns"
+import {DataTable} from "@/components/admin/data-table/tanstack-table/data-table"
+import {taskSchema} from "./data/schema"
 
 export const metadata: Metadata = {
     title: "Tasks",
@@ -31,24 +28,7 @@ export default async function TaskPage() {
 
     return (
         <>
-            <div className="md:hidden">
-                <Image
-                    src="/examples/tasks-light.png"
-                    width={1280}
-                    height={998}
-                    alt="Playground"
-                    className="block dark:hidden"
-                />
-                <Image
-                    src="/examples/tasks-dark.png"
-                    width={1280}
-                    height={998}
-                    alt="Playground"
-                    className="hidden dark:block"
-                />
-            </div>
             <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-                <BreadcrumbSection/>
                 <div className="flex items-center justify-between space-y-2">
                     <div>
                         <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
@@ -56,11 +36,8 @@ export default async function TaskPage() {
                             Here&apos;s a list of your tasks for this month!
                         </p>
                     </div>
-                    <div className="flex items-center space-x-2">
-                        <UserNav />
-                    </div>
                 </div>
-                <DataTable data={tasks} columns={columns} />
+                <DataTable data={tasks} columns={columns}/>
             </div>
         </>
     )

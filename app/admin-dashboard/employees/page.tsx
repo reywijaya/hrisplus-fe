@@ -1,11 +1,26 @@
 import {SidebarInset, SidebarTrigger} from "@/components/ui/sidebar";
 import {Separator} from "@/components/ui/separator";
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import BreadcrumbSection from "@/components/admin/breadcrumb-section";
-import TableSection from "@/components/admin/table-section";
+import {DataTable} from "@/components/admin/data-table/tanstack-table/data-table";
+import {columns} from "@/components/admin/employees/emp-columns-def";
 
-// this is page routing employees
-export default function EmployeesPage() {
+
+
+/**
+ * SIMULATE FETCHING DATA FROM JSON-SERVER
+ * */
+async function getEmployeeData() {
+    return await fetch("http://localhost:8000/employees")
+        .then((res) => res.json())
+        .catch((error) => console.error("ERROR FETCH EMPLOYEES", error));
+}
+
+/**
+ * EMPLOYEES PAGE => SERVER COMPONENT
+ * */
+export default async function EmployeesPage() {
+
+    const employees = await getEmployeeData();
+
     return (
         <SidebarInset>
             <header
@@ -13,20 +28,20 @@ export default function EmployeesPage() {
                 <div className="flex items-center gap-2 px-4">
                     <SidebarTrigger className="-ml-1"/>
                     <Separator orientation="vertical" className="mr-2 h-4"/>
-                    <BreadcrumbSection/>
+                    <h1>Dashboard</h1>
+                    {/*todo: define the content information for the header*/}
                 </div>
             </header>
             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Master Data Employees</CardTitle>
-                        <CardDescription>List of all employees in CV. Brewok Group</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <TableSection/>
-                    </CardContent>
-                    <CardFooter>{/*todo: what goes in here*/}</CardFooter>
-                </Card>
+                <div className="flex items-center justify-between space-y-2">
+                    <div>
+                        <h2 className="text-2xl font-bold tracking-tight">Master Data Employee</h2>
+                        <p className="text-muted-foreground">
+                            Here&apos;s a list of all the CV. Brewok Group Employee!
+                        </p>
+                    </div>
+                </div>
+                <DataTable data={employees} columns={columns}/>
             </div>
         </SidebarInset>
     )
