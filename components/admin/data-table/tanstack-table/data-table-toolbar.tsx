@@ -22,24 +22,24 @@ export function DataTableToolbar<TData>({table}: DataTableToolbarProps<TData>) {
         <div className="flex items-center justify-between">
             <div className="flex flex-1 items-center space-x-2">
                 <Input
-                    placeholder="Filter tasks..."
-                    value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
+                    placeholder="Search employees..."
+                    value={(table.getColumn("firstName")?.getFilterValue() as string) ?? ""}
                     onChange={(event) =>
-                        table.getColumn("id")?.setFilterValue(event.target.value)
+                        table.getColumn("firstName")?.setFilterValue(event.target.value)
                     }
                     className="h-8 w-[150px] lg:w-[250px]"
                 />
                 {table.getColumn("firstName") && (
                     <DataTableFacetedFilter
                         column={table.getColumn("firstName")}
-                        title="First Name"
+                        title="Filter options"
                         options={statuses}
                     />
                 )}
                 {table.getColumn("lastName") && (
                     <DataTableFacetedFilter
                         column={table.getColumn("lastName")}
-                        title="Last Name"
+                        title="or filter by what?"
                         options={priorities}
                     />
                 )}

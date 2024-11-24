@@ -10,6 +10,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import React from "react";
 
 interface DataTableColumnHeaderProps<TData, TValue>
     extends React.HTMLAttributes<HTMLDivElement> {
@@ -17,11 +18,8 @@ interface DataTableColumnHeaderProps<TData, TValue>
     title: string
 }
 
-export function DataTableColumnHeader<TData, TValue>({
-                                                         column,
-                                                         title,
-                                                         className,
-                                                     }: DataTableColumnHeaderProps<TData, TValue>) {
+export function DataTableColumnHeader<TData, TValue>({column, title, className}: DataTableColumnHeaderProps<TData, TValue>) {
+
     if (!column.getCanSort()) {
         return <div className={cn(className)}>{title}</div>
     }

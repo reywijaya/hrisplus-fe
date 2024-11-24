@@ -1,33 +1,18 @@
 "use client"
 
-import { Row } from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import {MoreHorizontal} from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import {Button} from "@/components/ui/button"
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
-import { labels } from "@/app/admin-dashboard/payroll/data/data"
-import { employeeSchema } from "@/app/admin-dashboard/employees/data/schema"
-
-interface DataTableRowActionsProps<TData> {
-    row: Row<TData>
-}
-
-export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData>) {
-    const task = employeeSchema.parse(row.original)
-
+export function DataTableRowActions() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -35,7 +20,7 @@ export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData
                     variant="ghost"
                     className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
                 >
-                    <MoreHorizontal />
+                    <MoreHorizontal/>
                     <span className="sr-only">Open menu</span>
                 </Button>
             </DropdownMenuTrigger>
@@ -43,20 +28,8 @@ export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData
                 <DropdownMenuItem>Edit</DropdownMenuItem>
                 <DropdownMenuItem>Make a copy</DropdownMenuItem>
                 <DropdownMenuItem>Favorite</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuSub>
-                    <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-                    <DropdownMenuSubContent>
-                        <DropdownMenuRadioGroup value={task.label}>
-                            {labels.map((label) => (
-                                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                                    {label.label}
-                                </DropdownMenuRadioItem>
-                            ))}
-                        </DropdownMenuRadioGroup>
-                    </DropdownMenuSubContent>
-                </DropdownMenuSub>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator/>
+                <DropdownMenuSeparator/>
                 <DropdownMenuItem>
                     Delete
                     <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
