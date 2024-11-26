@@ -2,7 +2,9 @@ import {SidebarInset, SidebarTrigger} from "@/components/ui/sidebar";
 import {Separator} from "@/components/ui/separator";
 import {DataTable} from "@/components/admin/data-table/tanstack-table/data-table";
 import {columns} from "@/components/admin/employees/emp-columns-def";
-
+import CardHeaderInfo from "@/components/admin/employees/card-header-info";
+import HeaderActionButton from "@/components/admin/employees/header-action-button";
+import {ChartNoAxesCombined, Download, PlusCircle, Users} from "lucide-react";
 
 
 /**
@@ -33,6 +35,23 @@ export default async function EmployeesPage() {
                 </div>
             </header>
             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+                <div className="flex items-center justify-end gap-2">
+                    <HeaderActionButton title={"Secondary"} variant={"secondary"}>
+                        <Download/>
+                    </HeaderActionButton>
+                    <HeaderActionButton title={"Primary"}>
+                        <PlusCircle/>
+                    </HeaderActionButton>
+                </div>
+                <div className="flex gap-4 md:gap-6 justify-between">
+                    <CardHeaderInfo title={"Title"} content={"Content"} additionalInfo={"+additionalInfo"}>
+                        <Users/>
+                    </CardHeaderInfo>
+                    <CardHeaderInfo title={"Title"} content={"Content"} additionalInfo={"+additionalInfo"}>
+                        <ChartNoAxesCombined/>
+                    </CardHeaderInfo>
+                    <CardHeaderInfo title={"Title"} content={"Content"} additionalInfo={"+additionalInfo"}/>
+                </div>
                 <div className="flex items-center justify-between space-y-2">
                     <div>
                         <h2 className="text-2xl font-bold tracking-tight">Master Data Employee</h2>
