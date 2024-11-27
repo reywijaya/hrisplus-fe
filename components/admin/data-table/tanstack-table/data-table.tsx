@@ -47,7 +47,7 @@ export function DataTable<TData, TValue>({columns, data}: DataTableProps<TData, 
         employmentContract: false,
         cardNumber: false,
         outletName: false,
-        loanStatus: false,
+        loanStatus: true,
         gender: false,
         isActive: true
     })

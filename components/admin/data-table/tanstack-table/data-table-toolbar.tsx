@@ -7,8 +7,8 @@ import {Button} from "@/components/ui/button"
 import {Input} from "@/components/ui/input"
 import {DataTableViewOptions} from "./data-table-view-options"
 
-import {priorities, statuses} from "@/app/admin-dashboard/payroll/data/data"
 import {DataTableFacetedFilter} from "./data-table-faceted-filter"
+import {isActive, loanStatus} from "@/app/admin-dashboard/employees/data/data-status"
 
 interface DataTableToolbarProps<TData> {
     table: Table<TData>
@@ -29,18 +29,18 @@ export function DataTableToolbar<TData>({table}: DataTableToolbarProps<TData>) {
                     }
                     className="h-8 w-[150px] lg:w-[250px]"
                 />
-                {table.getColumn("firstName") && (
+                {table.getColumn("isActive") && (
                     <DataTableFacetedFilter
-                        column={table.getColumn("firstName")}
-                        title="Filter options"
-                        options={statuses}
+                        column={table.getColumn("isActive")}
+                        title="Employment Status"
+                        options={isActive}
                     />
                 )}
-                {table.getColumn("lastName") && (
+                {table.getColumn("loanStatus") && (
                     <DataTableFacetedFilter
-                        column={table.getColumn("lastName")}
-                        title="or filter by what?"
-                        options={priorities}
+                        column={table.getColumn("loanStatus")}
+                        title="Loan Status"
+                        options={loanStatus}
                     />
                 )}
                 {isFiltered && (

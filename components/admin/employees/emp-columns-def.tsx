@@ -6,7 +6,7 @@ import {Checkbox} from "@/components/ui/checkbox"
 import {Employee} from "@/app/admin-dashboard/employees/data/schema" // todo should be edited
 import {DataTableColumnHeader} from "../data-table/tanstack-table/data-table-column-header"
 import {DataTableRowActions} from "../data-table/tanstack-table/data-table-row-actions"
-import {cn, isActiveConverter} from "@/lib/utils";
+import {isActive, loanStatus} from "@/app/admin-dashboard/employees/data/data-status";
 
 export const columns: ColumnDef<Employee>[] = [
     {
@@ -134,7 +134,30 @@ export const columns: ColumnDef<Employee>[] = [
         header: ({column}) => (
             <DataTableColumnHeader column={column} title="Loan Status"/>
         ),
-        cell: ({row}) => <>{row.getValue("loanStatus")}</>,
+        cell: ({row}) => {
+
+            const status = loanStatus.find((status) => status.value === row.getValue("loanStatus"));
+
+            let statusColor = ""
+            if (status?.label === "Pending") {
+                statusColor = "text-amber-600"
+            } else if (status?.label === "Rejected") {
+                statusColor = "text-red-600"
+            } else if (status?.label === "Approved") {
+                statusColor = "text-green-600"
+            }
+
+            if (!status) {
+                return null
+            }
+
+            return (
+                <div className="flex items-center">
+                    {status.icon && (<status.icon className={`${statusColor} mr-2 h-4 w-4 text-muted-foreground`}/>)}
+                    {status.label}
+                </div>
+            )
+        },
         filterFn: (row, id, value) => {
             return value.includes(row.getValue(id))
         },
@@ -155,10 +178,14 @@ export const columns: ColumnDef<Employee>[] = [
             <DataTableColumnHeader column={column} title="Employment Status"/>
         ),
         cell: ({row}) => {
-            const colored = row.getValue("isActive")
+
+            const activeStatus = isActive.find((activeStatus) => activeStatus.value === row.getValue("isActive"));
+
             return (
-                <div className={cn(`${colored ? "text-blue-500" : "text-red-500"}`)}>
-                    {isActiveConverter(row.getValue("isActive"))}
+                <div className="flex items-center">
+                    {activeStatus?.icon && (<activeStatus.icon
+                        className={`${activeStatus.value ? "text-blue-600" : "text-red-600"} mr-2 h-4 w-4 text-muted-foreground`}/>)}
+                    {activeStatus?.label}
                 </div>
             )
         },
@@ -168,6 +195,6 @@ export const columns: ColumnDef<Employee>[] = [
     },
     {
         id: "actions",
-        cell: ({row}) => <DataTableRowActions row={row}/>,
+        cell: () => <DataTableRowActions/>,
     },
 ]
