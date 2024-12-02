@@ -138,7 +138,7 @@ export const columns: ColumnDef<Employee>[] = [
 
             const status = loanStatus.find((status) => status.value === row.getValue("loanStatus"));
 
-            let statusColor = ""
+            let statusColor;
             if (status?.label === "Pending") {
                 statusColor = "text-amber-600"
             } else if (status?.label === "Rejected") {
@@ -153,7 +153,7 @@ export const columns: ColumnDef<Employee>[] = [
 
             return (
                 <div className="flex items-center">
-                    {status.icon && (<status.icon className={`${statusColor} mr-2 h-4 w-4 text-muted-foreground`}/>)}
+                    {status.icon && (<status.icon className={`${statusColor} mr-2 h-4 w-4`}/>)}
                     {status.label}
                 </div>
             )
@@ -184,7 +184,7 @@ export const columns: ColumnDef<Employee>[] = [
             return (
                 <div className="flex items-center">
                     {activeStatus?.icon && (<activeStatus.icon
-                        className={`${activeStatus.value ? "text-blue-600" : "text-red-600"} mr-2 h-4 w-4 text-muted-foreground`}/>)}
+                        className={`${activeStatus.value ? "text-blue-600" : "text-red-600"} mr-2 h-4 w-4`}/>)}
                     {activeStatus?.label}
                 </div>
             )

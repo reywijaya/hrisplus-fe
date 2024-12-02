@@ -6,6 +6,7 @@ import CardHeaderInfo from "@/components/admin/employees/card-header-info";
 import HeaderActionButton from "@/components/admin/employees/header-action-button";
 import {ChartNoAxesCombined, Download, PlusCircle, Users} from "lucide-react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import BreadcrumbSection from "@/components/admin/breadcrumb-section";
 
 
 /**
@@ -31,8 +32,7 @@ export default async function EmployeesPage() {
                 <div className="flex items-center gap-2 px-4">
                     <SidebarTrigger className="-ml-1"/>
                     <Separator orientation="vertical" className="mr-2 h-4"/>
-                    <h1>Dashboard</h1>
-                    {/*todo: define the content information for the header*/}
+                    <BreadcrumbSection/>
                 </div>
             </header>
             <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

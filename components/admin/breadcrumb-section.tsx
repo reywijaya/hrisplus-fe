@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -7,11 +9,13 @@ import {
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import {ChevronDown, Slash} from "lucide-react";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {usePathname} from "next/navigation";
 
-//todo: it should be dynamic
 export default function BreadcrumbSection() {
+
+    const pathname = usePathname()
+    console.log(pathname)
+
     return (
         <Breadcrumb>
             <BreadcrumbList>
@@ -20,28 +24,13 @@ export default function BreadcrumbSection() {
                         <Link href="/admin-dashboard">Dashboard</Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block">
-                    <Slash className="h-4 w-4"/>
-                </BreadcrumbSeparator>
+                <BreadcrumbSeparator className="hidden md:block"/>
                 <BreadcrumbItem className="hidden md:block">
-                    <BreadcrumbLink>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger className="flex items-center gap-1">
-                                Master Employee
-                                <ChevronDown className="h-4 w-4"/>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="start">
-                                {/*todo add link*/}
-                                <DropdownMenuItem>All Employees</DropdownMenuItem>
-                                <DropdownMenuItem>Inactive Employees</DropdownMenuItem>
-                                <DropdownMenuItem>Active Employees</DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
+                    <BreadcrumbLink asChild>
+                        <Link href="/admin-dashboard">Dashboard</Link>
                     </BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block">
-                    <Slash className="h-4 w-4"/>
-                </BreadcrumbSeparator>
+                <BreadcrumbSeparator className="hidden md:block"/>
                 <BreadcrumbItem>
                     <BreadcrumbPage>All employees</BreadcrumbPage>
                 </BreadcrumbItem>

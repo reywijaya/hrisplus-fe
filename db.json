@@ -1,4 +1,22 @@
 {
+  "users": {
+    "id": "1",
+    "email": "admin@example.com",
+    "password": "password123",
+    "name": "Admin User",
+    "role": "admin"
+  },
+  "login": {
+    "result": {
+      "resultCode": "00",
+      "resultDescription": "success login"
+    },
+    "data": {
+      "status": "ACTIVE",
+      "tokenVerification": null,
+      "tokenPermission": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImFsa2VuIiwiZW1haWwiOiJhbGtlbi5jb20uZGV2QGdtYWlsLmNvbSIsImNvbnRhY3ROdW1iZXIiOiIwODEyMTczNTU3NSIsImV4cGlyZWREYXRlIjoiMjAzMC0wMi0yNSIsInBlcm1pc3Npb24iOnsicm9sZSI6IkFETUlOIiwiaXNQcml2aWxhZ2UiOmZhbHNlLCJtZW51IjpbMTAwMSwxMDAyLDEwMDMsMTAwNCwxMDA1XSwiYWN0aW9uIjpbNTAwMSw1MDAyLDUwMDMsNTAwNCw1MDA1XX19.W9eFvMEeHf29J4xHlqUbe2TrgP-QWvC9EB2G9unKx54"
+    }
+  },
   "employees": [
     {
       "id": "E001",
